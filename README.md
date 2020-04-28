@@ -6,6 +6,8 @@
 
 **File Names and Description in sequence:**
 
+1. **Sampling-Sessions.ipynb and Merge-Sampled-Sessions-And-Tracks.ipynb -** These files performs sampling over the entire dataset and pulls 100k sessions out of it. After session sampling, it filters the songs from the songs dataset which are present in the sampled sessions.
+
 1. **Track Feature Autoencoder.ipynb -** This file reads the track data consisting of 20 features, train a feed forward Autoencoder and reduce the dimensions of each songs from 20 to 8. Finally, after this, it creates a csv file and store a latent vector representation of each track. Simply execute this file first in jupyter notebook to get the latent representation of each track as a csv output.
 
 2. **Session State Autoencoder.ipynb -** This file reads the entire session data and iterate through each of it to create a state of 5 continuous songs and transition between those songs. To create a state, it uses the latent representation of the tracks from the csv created in previous step. Once a vector of states is created where each state is a 5x9 matrix (5 songs along with transition data), an LSTM Autoencoder is trained. We used LSTM autoencoder due to the sequential pattern in the data. Once the autoencoder is trained, the encoder model is saved using pickle. Simply execute this file in jupyter notebook to get the encoder model for the states that converts a 5x9 state matrix into 1xp matrix.
